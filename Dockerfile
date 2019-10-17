@@ -3,16 +3,11 @@ ENV ARCH amd64
 ENV DIST stretch
 ENV MIRROR http://ftp.nl.debian.org
 RUN apt-get -q update
-RUN apt-get -qy install dnsmasq wget iptables tcpdump
+RUN apt-get -qy install dnsmasq wget iptables tcpdump vim
 RUN wget --no-check-certificate https://raw.github.com/jpetazzo/pipework/master/pipework
 RUN chmod +x pipework
 RUN mkdir /tftp
 WORKDIR /tftp
-#RUN wget $MIRROR/debian/dists/$DIST/main/installer-$ARCH/current/images/netboot/debian-installer/$ARCH/linux
-#RUN wget $MIRROR/debian/dists/$DIST/main/installer-$ARCH/current/images/netboot/debian-installer/$ARCH/initrd.gz
-#RUN wget $MIRROR/debian/dists/$DIST/main/installer-$ARCH/current/images/netboot/debian-installer/$ARCH/pxelinux.0
-#RUN mkdir pxelinux.cfg
-#RUN printf "DEFAULT linux\nLABEL linux\nKERNEL linux\nAPPEND initrd=initrd.gz\n" >pxelinux.cfg/default
 RUN wget http://ftp.debian.org/debian/dists/stretch/main/installer-amd64/current/images/netboot/netboot.tar.gz
 RUN tar xvzf netboot.tar.gz -C ./
 CMD \
