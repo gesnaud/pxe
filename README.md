@@ -1,2 +1,2 @@
-docker build -t pxe .
-docker run --net host pxe -d
+docker build -t pxe . &\
+docker run --net host -d pxe
